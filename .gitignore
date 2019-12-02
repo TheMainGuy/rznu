@@ -4,3 +4,5 @@
 venv/
 
 *.pyc
+
+poster/db\.sqlite3
