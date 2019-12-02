@@ -5,7 +5,56 @@
     <title>Dokumentacija</title>
 </head>
 <body>
-    test
+    <table>
+        <thead>
+            <div class="container">
+                <tr>
+                    <th>URL</th>
+                    <th>GET</th>
+                    <th>POST</th>
+                    <th>PUT</th>
+                    <th>DELETE</th>
+                </tr>
+            </div>
+        </thead>
+        <tbody>
+            <tr>
+                <td>/posts/</td>
+                <td>Gets all posts</td>
+                <td>Creates a new post</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>/posts/{post_id}</td>
+                <td>Gets post with id {post_id}</td>
+                <td>-</td>
+                <td>Updates post with id {post_id}</td>
+                <td>Deletes post with id {post_id}</td>
+            </tr>
+            <tr>
+                <td>/comments/</td>
+                <td>Gets all comments</td>
+                <td>Creates a new comment</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>/comments/{comment_id}</td>
+                <td>Gets comment with id {comment_id}</td>
+                <td>-</td>
+                <td>Updates comment with id {comment_id}</td>
+                <td>Deletes comment with id {comment_id}</td>
+            </tr>
+            <tr>
+                <td>/posts/{post_id}/comments/</td>
+                <td>Gets all comments belonging to the post with id {post_id}</td>
+                <td>Creates a new comment belonging to the post with id {post_id}</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>

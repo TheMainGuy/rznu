@@ -3,7 +3,6 @@ from django.views.generic import TemplateView
 
 from .api import list_create_posts, get_update_delete_post, list_create_comment, get_update_delete_comment, \
     list_create_post_comment, get_update_delete_post_comment
-from .views import index
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
