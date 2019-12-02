@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.authentication import BasicAuthentication
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from rest_framework.response import Response
 
 from post.permissions import IsOwnerOrReadOnly
@@ -10,6 +10,8 @@ from .models import Post, Comment
 
 
 @api_view(['GET', 'POST'])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def list_create_posts(request):
     if request.method == 'GET':
         posts = Post.objects.all()
@@ -29,8 +31,8 @@ def list_create_posts(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsOwnerOrReadOnly])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_update_delete_post(request, post_id):
     try:
         post = Post.objects.get(id=post_id)
@@ -51,6 +53,8 @@ def get_update_delete_post(request, post_id):
 
 
 @api_view(['GET', 'POST'])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def list_create_comment(request):
     if request.method == 'GET':
         comments = Comment.objects.all()
@@ -70,8 +74,8 @@ def list_create_comment(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsOwnerOrReadOnly])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_update_delete_comment(request, comment_id):
     try:
         comment = Comment.objects.get(id=comment_id)
@@ -92,6 +96,8 @@ def get_update_delete_comment(request, comment_id):
 
 
 @api_view(['GET', 'POST'])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def list_create_post_comment(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == 'GET':
@@ -112,8 +118,8 @@ def list_create_post_comment(request, post_id):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@authentication_classes([BasicAuthentication])
-@permission_classes([IsOwnerOrReadOnly])
+@authentication_classes([BasicAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_update_delete_post_comment(request, post_id, comment_id):
     try:
         comment = Comment.objects.get(id=comment_id)
