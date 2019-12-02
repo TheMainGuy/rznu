@@ -23,7 +23,9 @@
 # ]
 
 from django.conf.urls import url, include
+from django.contrib import admin
 from django.contrib.auth.models import User
+from django.urls import path
 from rest_framework import routers, serializers, viewsets
 
 
@@ -47,6 +49,8 @@ router.register(r'users', UserViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    path('admin/', admin.site.urls),
     url(r'^', include(router.urls)),
+    path('', include('post.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
