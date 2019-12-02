@@ -62,6 +62,7 @@ class PostsIdTest(APITestCase):
     def test_put_post(self):
         factory = APIRequestFactory()
         request = factory.put('/posts/1', {'title': 'Updateani post', 'content': 'test', 'owner': 1})
+        request.user = self.user
         response = get_update_delete_post(request, 1)
         self.assertEquals('Updateani post', response.data['title'])
         self.assertEquals('test', response.data['content'])
@@ -70,6 +71,7 @@ class PostsIdTest(APITestCase):
     def test_delete_post(self):
         factory = APIRequestFactory()
         request = factory.delete('/posts/1')
+        request.user = self.user
         response = get_update_delete_post(request, 1)
         self.assertEquals(0, len(Post.objects.all()))
 
@@ -130,6 +132,7 @@ class CommentsIdTest(APITestCase):
     def test_put_comment(self):
         factory = APIRequestFactory()
         request = factory.put('/comment/1', {'post': 1, 'content': 'test', 'owner': 1})
+        request.user = self.user
         response = get_update_delete_comment(request, 1)
         self.assertEquals('test', response.data['content'])
         self.assertEquals(1, response.data['owner'])
@@ -137,6 +140,7 @@ class CommentsIdTest(APITestCase):
     def test_delete_comment(self):
         factory = APIRequestFactory()
         request = factory.delete('/comments/1')
+        request.user = self.user
         response = get_update_delete_comment(request, 1)
         self.assertEquals(0, len(Comment.objects.all()))
 
@@ -200,6 +204,7 @@ class PostCommentsIdTest(APITestCase):
     def test_put_post_comment(self):
         factory = APIRequestFactory()
         request = factory.put('/posts/1/comment/1', {'post': 1, 'content': 'test', 'owner': 1})
+        request.user = self.user
         response = get_update_delete_post_comment(request, 1, 1)
         self.assertEquals('test', response.data['content'])
         self.assertEquals(1, response.data['owner'])
@@ -207,5 +212,6 @@ class PostCommentsIdTest(APITestCase):
     def test_delete_post_comment(self):
         factory = APIRequestFactory()
         request = factory.delete('posts/1/comments/1')
+        request.user = self.user
         response = get_update_delete_post_comment(request, 1, 1)
         self.assertEquals(0, len(Comment.objects.all()))

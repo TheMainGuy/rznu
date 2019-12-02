@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from rest_framework.response import Response
 
-from post.permissions import IsOwnerOrReadOnly
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 
